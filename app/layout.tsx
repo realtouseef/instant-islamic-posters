@@ -26,12 +26,12 @@ export default function RootLayout({
       <body
         className={`${quicksand.variable} antialiased overflow-hidden`}
       >
+        <AntdRegistry>
         <div className="flex items-start">
         <Sidebar />
-        <AntdRegistry>
           <main>{children}</main>
-        </AntdRegistry>
         </div>
+        </AntdRegistry>
       </body>
     </html>
   );
