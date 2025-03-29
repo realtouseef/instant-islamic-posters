@@ -3,16 +3,18 @@
 import React from "react";
 import { Button, Radio, Select, Typography } from "antd";
 import { colorPalettes } from "@/app/lib/colors";
-import { cn } from "@/app/lib/helpers";
+import { cn, downloadImage } from "@/app/lib/helpers";
 import { usePaletteStore } from "@/app/store/backgroud";
 import { verseData } from "@/app/lib/data";
 import { useVerseStore } from "@/app/store/verse";
 import { useSizeStore } from "@/app/store/size";
+import { useDownloadStore } from "@/app/store/trigger-download";
 
 const Sidebar = () => {
   const setPalette = usePaletteStore((state) => state.setSelectedPalette);
   const setVerse = useVerseStore((state) => state.setSelectedVerse);
   const setSize = useSizeStore((state) => state.setSize);
+  const triggerDownload = useDownloadStore((state) => state.triggerDownload);
 
   return (
     <div className="flex flex-col min-h-screen w-96 px-5 py-10 gap-y-10">
@@ -91,7 +93,7 @@ const Sidebar = () => {
 
       <div className="flex flex-col gap-y-3 w-full">
         <Typography.Text className="text-xs font-bold">Export</Typography.Text>
-        <Button>Export</Button>
+        <Button onClick={triggerDownload}>Export</Button>
       </div>
     </div>
   );
