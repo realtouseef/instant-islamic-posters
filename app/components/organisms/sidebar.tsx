@@ -3,7 +3,7 @@
 import React from "react";
 import { Button, Radio, Select, Typography } from "antd";
 import { colorPalettes } from "@/app/lib/colors";
-import { cn, downloadImage } from "@/app/lib/helpers";
+import { cn } from "@/app/lib/helpers";
 import { usePaletteStore } from "@/app/store/backgroud";
 import { verseData } from "@/app/lib/data";
 import { useVerseStore } from "@/app/store/verse";
@@ -58,7 +58,7 @@ const Sidebar = () => {
           defaultValue={1}
           className="w-60"
           onChange={(id) => {
-            const selected = verseData.find((verse) => verse.id === (id || 1));
+            const selected = verseData.find((verse) => verse.id === id);
             if (selected) setVerse(selected);
           }}
           options={verseData.map((verse) => ({

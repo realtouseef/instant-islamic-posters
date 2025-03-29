@@ -1,12 +1,5 @@
 import { create } from 'zustand'
-
-interface Verse {
-  id: number;
-  title: string;
-  urdu: string;
-  arabic: string;
-  english: string;
-}
+import { Verse } from '../lib/types';
 
 interface VerseStore {
   selectedVerse: Verse | null;
