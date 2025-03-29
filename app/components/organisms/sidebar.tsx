@@ -9,12 +9,28 @@ import { verseData } from "@/app/lib/data";
 import { useVerseStore } from "@/app/store/verse";
 import { useSizeStore } from "@/app/store/size";
 import { useDownloadStore } from "@/app/store/trigger-download";
+import { useBackgroundStore } from "@/app/store/background-type";
+
+const backgroundOptions = [
+  { value: "gradient", label: "Gradient Background" },
+  { value: "image", label: "Image Background" },
+];
+
+const imageOptions = [
+  "/assets/verse-backgrounds/abstract.jpg",
+  "/assets/verse-backgrounds/abstract0.jpg",
+  "/assets/verse-backgrounds/abstract1.jpg",
+  "/assets/verse-backgrounds/abstract2.jpg",
+  "/assets/verse-backgrounds/grainy.jpg",
+  "/assets/verse-backgrounds/grainy1.jpg",
+];
 
 const Sidebar = () => {
   const setPalette = usePaletteStore((state) => state.setSelectedPalette);
   const setVerse = useVerseStore((state) => state.setSelectedVerse);
   const setSize = useSizeStore((state) => state.setSize);
   const triggerDownload = useDownloadStore((state) => state.triggerDownload);
+  const { setBackgroundType, setSelectedImage } = useBackgroundStore();
 
   return (
     <div className="flex flex-col min-h-screen w-96 px-5 py-10 gap-y-10">
@@ -46,6 +62,28 @@ const Sidebar = () => {
                 ))}
               </div>
             ),
+          }))}
+        />
+      </div>
+
+      <div className="flex flex-col gap-y-3 w-full">
+        <Typography.Text className="text-xs font-bold">
+          Background Image
+        </Typography.Text>
+        <Select
+          defaultValue="gradient"
+          className="w-60"
+          onChange={(value) => setBackgroundType(value as "image" | "gradient")}
+          options={backgroundOptions}
+        />
+
+        <Select
+          placeholder="Select an Image"
+          className="w-60 min-h-14"
+          onChange={(value) => setSelectedImage(value)}
+          options={imageOptions.map((img) => ({
+            value: img,
+            label: <img src={img} alt="bg" className="w-10 h-10 rounded-md" />,
           }))}
         />
       </div>
