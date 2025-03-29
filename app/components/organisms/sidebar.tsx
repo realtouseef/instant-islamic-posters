@@ -17,12 +17,28 @@ const backgroundOptions = [
 ];
 
 const imageOptions = [
+  "/assets/verse-backgrounds/aesthetic.jpeg",
+  "/assets/verse-backgrounds/aesthetic1.jpeg",
   "/assets/verse-backgrounds/abstract.jpg",
   "/assets/verse-backgrounds/abstract0.jpg",
+  "/assets/verse-backgrounds/aesthetic2.jpeg",
+  "/assets/verse-backgrounds/aesthetic3.jpeg",
+  "/assets/verse-backgrounds/aesthetic4.jpeg",
+  "/assets/verse-backgrounds/aesthetic5.jpeg",
+  "/assets/verse-backgrounds/aesthetic6.jpeg",
   "/assets/verse-backgrounds/abstract1.jpg",
   "/assets/verse-backgrounds/abstract2.jpg",
+  "/assets/verse-backgrounds/abstract3.jpg",
+  "/assets/verse-backgrounds/abstract4.jpg",
+  "/assets/verse-backgrounds/abstract5.png",
+  "/assets/verse-backgrounds/abstract6.png",
+  "/assets/verse-backgrounds/abstract7.png",
+  "/assets/verse-backgrounds/abstract8.jpeg",
   "/assets/verse-backgrounds/grainy.jpg",
   "/assets/verse-backgrounds/grainy1.jpg",
+  "/assets/verse-backgrounds/grainy2.png",
+  "/assets/verse-backgrounds/funky.jpg",
+  "/assets/verse-backgrounds/funky1.png",
 ];
 
 const Sidebar = () => {
