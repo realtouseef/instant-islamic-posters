@@ -18,7 +18,7 @@ export const Gradient = ({ children, ref }: { children: React.ReactNode; ref: Re
         className="h-full w-full rounded-2xl transition-all duration-300 relative"
         style={{ background: gradient }}
       >
-        <div className="p-4 relative z-10">{children}</div>
+        <div className="p-4 relative z-10 h-full flex items-center justify-center">{children}</div>
       </div>
     </div>
   )
