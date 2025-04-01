@@ -13,7 +13,7 @@ const quicksand = Quicksand({
 
 export const metadata: Metadata = {
   title: "Instant Islamic Posters",
-  description: "Generated islamic posters instantly",
+  description: "Generate islamic posters instantly",
 };
 
 export default function RootLayout({

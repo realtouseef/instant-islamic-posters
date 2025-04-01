@@ -8,8 +8,8 @@ type BackgroundState = {
 };
 
 export const useBackgroundStore = create<BackgroundState>((set) => ({
-  backgroundType: "gradient", // "gradient" | "image"
-  selectedImage: "", // Store image URL
-  setBackgroundType: (type: "gradient" | "image") => set({ backgroundType: type }),
-  setSelectedImage: (image: string) => set({ selectedImage: image }),
+  backgroundType: "gradient",
+  selectedImage: "",
+  setBackgroundType: (type) => set({ backgroundType: type }),
+  setSelectedImage: (image) => set({ selectedImage: image }),
 }));
