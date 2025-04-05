@@ -74,10 +74,11 @@ const Canvas = () => {
             <VerseCard verse={verse} />
           </Background>
           {verseType === "random" && (
-            <div className="w-full absolute -bottom-3 left-0 flex justify-center right-0 active:scale-95 transition-all duration-300 cursor-pointer z-50"
-            onClick={onRandomVerse}
+            <div className="w-full absolute -bottom-3 left-0 flex justify-center right-0 active:scale-75 transition-all duration-300 z-50"
             >
-              <div className="bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center border border-gray-400">
+              <div className="bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center border border-gray-400 cursor-pointer shadow-2xl"
+              onClick={onRandomVerse}
+              >
                 <ShuffleIcon />
               </div>
             </div>
