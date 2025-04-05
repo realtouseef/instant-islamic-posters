@@ -1,11 +1,11 @@
 import { Verse } from "@/app/lib/types";
 import { Typography } from "antd";
-import { Amiri } from "next/font/google";
+import { Amiri_Quran } from "next/font/google";
 import React from "react";
 
-const amiri = Amiri({
-  weight: "400",
-  subsets: ["arabic"],
+const amiri = Amiri_Quran({
+  weight: ["400"],
+  subsets: ["latin"],
   variable: "--font-amiri",
 });
 

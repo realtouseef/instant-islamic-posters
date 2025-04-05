@@ -12,6 +12,16 @@ import { ShuffleIcon } from "@/app/assets/icons";
 import { useVerseTypeStore } from "@/app/store/verse-type";
 import { Verse } from "@/app/lib/types";
 
+interface RawVerse {
+  number: number;
+  surah: {
+    englishName: string;
+    name: string;
+  };
+  text: string;
+  englishText: string;
+}
+
 const Canvas = () => {
   const verse = useVerseStore((state) => state.selectedVerse);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -23,27 +33,36 @@ const Canvas = () => {
   
   const {data: randomVerse, refetch} = useGetRandomVerse()
 
-  const onRandomVerse = () => {
-    refetch();
+  const setFormattedVerse = (verseData: RawVerse | undefined) => {
+    if (!verseData) return;
 
     const formattedVerse: Verse = {
-      id: randomVerse.number,
-      title: `${randomVerse.surah.englishName} | ${randomVerse.surah.name} `,
-      arabic: randomVerse?.text,
-      english: ''
+      id: verseData.number,
+      title: `${verseData.surah.englishName} | ${verseData.surah.name}`,
+      arabic: verseData.text,
+      english: verseData.englishText,
+    };
+
+    setVerse(formattedVerse);
+  };
+
+  useEffect(() => {
+    if (randomVerse && verseType === "random") {
+      setFormattedVerse(randomVerse);
     }
-    setVerse(formattedVerse)
-  }
+  }, [randomVerse, verseType]);
+
+  const onRandomVerse = () => refetch(); 
 
   useEffect(() => {
     setTriggerDownload(() => downloadImage(cardRef));
   }, [setTriggerDownload]);
 
   useEffect(() => {
-    if (!verse && verseData.length > 0) {
+    if (!verse && verseData?.length > 0 && verseType !== "random") {
       setVerse(verseData[0]);
     }
-  }, [verse, setVerse]);
+  }, [verse, verseData, verseType, setVerse]);
 
   return (
     <div className="relative bg-[#ECF0F4] h-full">
