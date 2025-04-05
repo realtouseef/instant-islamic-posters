@@ -16,7 +16,7 @@ interface VerseProps {
 const VerseCard = ({ verse }: VerseProps) => {
   return (
     <div className="flex flex-col gap-y-5 bg-white rounded-xl p-3">
-      <Typography.Title level={5} className="text-center ${amiri.className}">
+      <Typography.Title level={5} className={`text-center ${amiri.className}`}>
         {verse?.title}
       </Typography.Title>
       <p className={`text-end text-2xl leading-16 ${amiri.className}`}>
