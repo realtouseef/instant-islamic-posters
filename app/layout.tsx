@@ -3,7 +3,8 @@ import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "./components/organisms";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import '@ant-design/v5-patch-for-react-19';
+import "@ant-design/v5-patch-for-react-19";
+import ReactQueryProvider from "./providers/react-query-provider";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -23,14 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${quicksand.variable} antialiased overflow-hidden`}
-      >
+      <body className={`${quicksand.variable} antialiased overflow-hidden`}>
         <AntdRegistry>
-        <div className="flex items-start">
-        <Sidebar />
-          <main>{children}</main>
-        </div>
+          <ReactQueryProvider>
+            <div className="flex items-start">
+              <Sidebar />
+              <main>{children}</main>
+            </div>
+          </ReactQueryProvider>
         </AntdRegistry>
       </body>
     </html>

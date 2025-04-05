@@ -7,6 +7,10 @@ import { useDownloadStore } from "@/app/store/trigger-download";
 import { downloadImage } from "@/app/lib/helpers";
 import { VerseCard } from "../molecules";
 import { verseData } from "@/app/lib/data";
+import { useGetRandomVerse } from "@/app/services/quran/queries";
+import { ShuffleIcon } from "@/app/assets/icons";
+import { useVerseTypeStore } from "@/app/store/verse-type";
+import { Verse } from "@/app/lib/types";
 
 const Canvas = () => {
   const verse = useVerseStore((state) => state.selectedVerse);
@@ -15,6 +19,21 @@ const Canvas = () => {
     (state) => state.setTriggerDownload
   );
   const setVerse = useVerseStore((state) => state.setSelectedVerse);
+  const { verseType } = useVerseTypeStore();
+  
+  const {data: randomVerse, refetch} = useGetRandomVerse()
+
+  const onRandomVerse = () => {
+    refetch();
+
+    const formattedVerse: Verse = {
+      id: randomVerse.number,
+      title: `${randomVerse.surah.englishName} | ${randomVerse.surah.name} `,
+      arabic: randomVerse?.text,
+      english: ''
+    }
+    setVerse(formattedVerse)
+  }
 
   useEffect(() => {
     setTriggerDownload(() => downloadImage(cardRef));
@@ -31,10 +50,19 @@ const Canvas = () => {
       <div className="absolute inset-0 bg-[url('/assets/canvas/canvas-bg.jpg')] bg-center bg-fixed bg-[length:200px] opacity-30" />
 
       <div className="relative p-20">
-        <Card>
+        <Card className="relative">
           <Background ref={cardRef}>
             <VerseCard verse={verse} />
           </Background>
+          {verseType === "random" && (
+            <div className="w-full absolute -bottom-3 left-0 flex justify-center right-0 active:scale-95 transition-all duration-300 cursor-pointer z-50"
+            onClick={onRandomVerse}
+            >
+              <div className="bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center border border-gray-400">
+                <ShuffleIcon />
+              </div>
+            </div>
+          )}
         </Card>
       </div>
     </div>

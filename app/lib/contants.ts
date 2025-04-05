@@ -1,0 +1,1 @@
+export const QURAN_TOTAL_VERSES = 6236;

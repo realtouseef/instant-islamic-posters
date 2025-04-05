@@ -21,3 +21,5 @@ export const downloadImage = async (cardRef: RefObject<HTMLDivElement | null>) =
     link.click();
   }
 };
+
+export const randomNumberGenerator = (max: number) => Math.floor(Math.random() * max) + 1;

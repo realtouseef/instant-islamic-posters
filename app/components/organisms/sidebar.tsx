@@ -11,10 +11,16 @@ import { useSizeStore } from "@/app/store/size";
 import { useDownloadStore } from "@/app/store/trigger-download";
 import { useBackgroundStore } from "@/app/store/background-type";
 import Image from "next/image";
+import { useVerseTypeStore } from "@/app/store/verse-type";
 
 const backgroundOptions = [
   { value: "gradient", label: "Gradient Background" },
   { value: "image", label: "Image Background" },
+];
+
+const verseTypeOptions = [
+  { value: "predefined", label: "Predefined Verse" },
+  { value: "random", label: "Random Verse" },
 ];
 
 const imageOptions = [
@@ -47,8 +53,8 @@ const Sidebar = () => {
   const setVerse = useVerseStore((state) => state.setSelectedVerse);
   const setSize = useSizeStore((state) => state.setSize);
   const triggerDownload = useDownloadStore((state) => state.triggerDownload);
-  const { backgroundType, setBackgroundType, setSelectedImage } =
-    useBackgroundStore();
+  const { verseType, setVerseType } = useVerseTypeStore();
+  const { backgroundType, setBackgroundType, setSelectedImage } = useBackgroundStore();
 
   return (
     <div className="flex flex-col min-h-screen w-96 px-5 py-10 gap-y-10">
@@ -57,23 +63,31 @@ const Sidebar = () => {
           Pick a Verse
         </Typography.Text>
         <Select
-          defaultValue={1}
+          defaultValue="predefined"
           className="w-60"
-          onChange={(id) => {
-            const selected = verseData.find((verse) => verse.id === id);
-            if (selected) setVerse(selected);
-          }}
-          options={verseData.map((verse) => ({
-            value: verse.id,
-            label: (
-              <div className="flex flex-col">
-                <Typography.Text className="text-xs font-bold">
-                  {verse.title}
-                </Typography.Text>
-              </div>
-            ),
-          }))}
+          onChange={(value) => setVerseType(value as "random" | "predefined")}
+          options={verseTypeOptions}
         />
+        {verseType === "predefined" && (
+          <Select
+            defaultValue={1}
+            className="w-60"
+            onChange={(id) => {
+              const selected = verseData.find((verse) => verse.id === id);
+              if (selected) setVerse(selected);
+            }}
+            options={verseData.map((verse) => ({
+              value: verse.id,
+              label: (
+                <div className="flex flex-col">
+                  <Typography.Text className="text-xs font-bold">
+                    {verse.title}
+                  </Typography.Text>
+                </div>
+              ),
+            }))}
+          />
+        )}
       </div>
 
       <div className="flex flex-col gap-y-3 w-full">
