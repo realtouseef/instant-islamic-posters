@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Radio, Select, Typography } from "antd";
+import { Button, FloatButton, Radio, Select, Typography } from "antd";
 import { colorPalettes } from "@/app/lib/colors";
 import { cn } from "@/app/lib/helpers";
 import { usePaletteStore } from "@/app/store/backgroud";
@@ -12,6 +12,8 @@ import { useDownloadStore } from "@/app/store/trigger-download";
 import { useBackgroundStore } from "@/app/store/background-type";
 import Image from "next/image";
 import { useVerseTypeStore } from "@/app/store/verse-type";
+import { MoonIcon } from "@/app/assets/icons";
+import { useThemeStore } from "@/app/store/theme";
 
 const backgroundOptions = [
   { value: "gradient", label: "Gradient Background" },
@@ -54,10 +56,12 @@ const Sidebar = () => {
   const setSize = useSizeStore((state) => state.setSize);
   const triggerDownload = useDownloadStore((state) => state.triggerDownload);
   const { verseType, setVerseType } = useVerseTypeStore();
-  const { backgroundType, setBackgroundType, setSelectedImage } = useBackgroundStore();
+  const { backgroundType, setBackgroundType, setSelectedImage } =
+    useBackgroundStore();
+  const { theme, setTheme } = useThemeStore();
 
   return (
-    <div className="flex flex-col min-h-screen w-96 px-5 py-10 gap-y-10">
+    <div className="flex flex-col min-h-screen w-96 px-5 py-10 gap-y-10 dark:bg-black">
       <div className="flex flex-col gap-y-3 w-full">
         <Typography.Text className="text-xs font-bold">
           Pick a Verse
@@ -91,13 +95,13 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col gap-y-3 w-full">
-        <Typography.Text className="text-xs font-bold">
+        <Typography.Text className="text-xs font-bold text-black dark:text-white">
           Background Image
         </Typography.Text>
 
         <Select
           defaultValue="gradient"
-          className="w-60"
+          className="w-60 bg-white dark:bg-black"
           onChange={(value) => setBackgroundType(value as "image" | "gradient")}
           options={backgroundOptions}
         />
@@ -175,6 +179,16 @@ const Sidebar = () => {
         <Typography.Text className="text-xs font-bold">Export</Typography.Text>
         <Button onClick={triggerDownload}>Export</Button>
       </div>
+
+      <FloatButton
+        icon={<MoonIcon />}
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        tooltip={
+          <span className="text-xs">
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </span>
+        }
+      />
     </div>
   );
 };

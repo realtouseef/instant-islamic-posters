@@ -7,7 +7,7 @@ export const Card = ({ children, className }: { children: React.ReactNode, class
   const cardSize = isPortrait ? "w-[500px] h-[700px]" : "h-[500px] w-[700px]";
 
   return (
-    <div className={cn("bg-white rounded-3xl shadow-2xl p-3", cardSize, className)}>
+    <div className={cn("bg-white dark:bg-black rounded-3xl shadow-2xl p-3", cardSize, className)}>
       {children}
     </div>
   );

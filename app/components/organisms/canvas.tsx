@@ -65,7 +65,7 @@ const Canvas = () => {
   }, [verse, verseData, verseType, setVerse]);
 
   return (
-    <div className="relative bg-[#ECF0F4] h-full">
+    <div className="relative bg-[#ECF0F4] dark:bg-black h-full">
       <div className="absolute inset-0 bg-[url('/assets/canvas/canvas-bg.jpg')] bg-center bg-fixed bg-[length:200px] opacity-30" />
 
       <div className="relative p-20">
@@ -76,7 +76,7 @@ const Canvas = () => {
           {verseType === "random" && (
             <div className="w-full absolute -bottom-3 left-0 flex justify-center right-0 active:scale-75 transition-all duration-300 z-50"
             >
-              <div className="bg-gray-50 hover:bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center border border-gray-400 cursor-pointer shadow-2xl"
+              <div className="bg-gray-50 hover:bg-gray-100 dark:bg-gray-950 dark:hover:bg-gray-800 w-10 h-10 rounded-full flex justify-center items-center border border-gray-400 dark:border-gray-800 cursor-pointer shadow-2xl"
               onClick={onRandomVerse}
               >
                 <ShuffleIcon />
