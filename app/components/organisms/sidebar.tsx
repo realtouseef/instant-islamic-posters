@@ -95,13 +95,13 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-col gap-y-3 w-full">
-        <Typography.Text className="text-xs font-bold text-black dark:text-white">
+        <Typography.Text className="text-xs font-bold">
           Background Image
         </Typography.Text>
 
         <Select
           defaultValue="gradient"
-          className="w-60 bg-white dark:bg-black"
+          className="w-60"
           onChange={(value) => setBackgroundType(value as "image" | "gradient")}
           options={backgroundOptions}
         />

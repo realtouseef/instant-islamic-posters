@@ -1,5 +1,5 @@
 import clsx, { ClassValue } from "clsx";
-import html2canvas from "html2canvas";
+import html2canvas from "html2canvas-pro";
 import { RefObject } from "react";
 import { twMerge } from "tailwind-merge";
 
